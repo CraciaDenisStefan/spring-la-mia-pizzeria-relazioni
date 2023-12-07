@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+</head>
+<body class="body-background">
+	<header th:insert="fragments :: header"></header>
+		<div class="container text-white">
+			<h1>Dettagli Pizza</h1>
+		   		<div th:if="${pizza != null}">
+			        <p>
+			            Nome: <span th:text="${pizza.nome}"></span><br>
+			            Descrizione: <span th:text="${pizza.descrizione}"></span><br>
+			            <img th:src="${pizza.fotoUrl}" alt="Pizza Image" style="max-width: 300px; max-height: 300px;" class="my-4"><br>
+			            Prezzo: <span th:text="'€ ' + ${pizza.prezzo}"></span>
+			        </p>
+		    	</div>
+			    <div th:if="${pizza == null}">
+			        <p>La pizza non è stata trovata.</p>
+			    </div>
+		</div>
+    <footer th:insert="fragments :: footer"></footer>
+</body>
+</html>
