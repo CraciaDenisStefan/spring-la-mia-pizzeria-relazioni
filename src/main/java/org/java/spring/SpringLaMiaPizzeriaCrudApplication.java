@@ -1,6 +1,11 @@
 package org.java.spring;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import org.java.spring.db.pojo.OffertaSpeciale;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.serve.OffertaSpecialeService;
 import org.java.spring.db.serve.Pizzeriaservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,6 +17,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 
 	@Autowired
 	private Pizzeriaservice pizzeriaService;
+	
+	@Autowired
+	private OffertaSpecialeService offertaSpecialeService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -29,7 +37,13 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		pizzeriaService.save(new Pizza("Diavola", "Mozzarella, pomodoro, salame piccante", "https://imagizr.com/1200_628/cdn.pizzamatch.com/1/11/1366722064-diavola-orig.JPG", 8.50));
 		pizzeriaService.save(new Pizza("Rustica", "Mozzarella, pomodoro, salsiccia, patate, rosmarino", "https://pizza-rustica.com/wp-content/uploads/revslider/home-t03/hs-01.jpg", 10.50));
 
-	
+		List<Pizza> pizze = pizzeriaService.findAll();
+		
+		offertaSpecialeService.save(new OffertaSpeciale(LocalDate.now().minusDays(9),LocalDate.now(),"prova1", pizze.get(0)));
+		offertaSpecialeService.save(new OffertaSpeciale(LocalDate.now().minusDays(89),LocalDate.now(),"prova2", pizze.get(1) ));
+		offertaSpecialeService.save(new OffertaSpeciale(LocalDate.now().minusDays(32),LocalDate.now(),"prova3", pizze.get(2) ));
+		offertaSpecialeService.save(new OffertaSpeciale(LocalDate.now().minusDays(3),LocalDate.now(),"prova4", pizze.get(3)));
+		offertaSpecialeService.save(new OffertaSpeciale(LocalDate.now().minusDays(5),LocalDate.now(),"prova5", pizze.get(4) ));
 	}
 
 }

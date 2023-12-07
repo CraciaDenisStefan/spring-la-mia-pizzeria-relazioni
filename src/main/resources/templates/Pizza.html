@@ -17,6 +17,14 @@
 			            <img th:src="${pizza.fotoUrl}" alt="Pizza Image" style="max-width: 300px; max-height: 300px;" class="my-4"><br>
 			            Prezzo: <span th:text="'€ ' + ${pizza.prezzo}"></span>
 			        </p>
+			        <div th:if="${not #lists.isEmpty(pizza.offerte)}">
+						 <h2>Offerte Speciali:</h2>
+				            <ul>
+				                <li th:each="offerta : ${pizza.offerte}">
+				                    <span th:text="${offerta.titolo}"></span> - <span th:text="${offerta.dataInizio}"></span>
+				                </li>
+				            </ul>
+					</div>        
 		    	</div>
 			    <div th:if="${pizza == null}">
 			        <p>La pizza non è stata trovata.</p>
