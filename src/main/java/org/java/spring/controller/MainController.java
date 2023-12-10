@@ -1,7 +1,10 @@
 package org.java.spring.controller;
 
-import java.util.List; 
+import java.util.List;
+
+import org.java.spring.db.pojo.OffertaSpeciale;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.serve.OffertaSpecialeService;
 import org.java.spring.db.serve.Pizzeriaservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,9 @@ public class MainController {
 
 	@Autowired
 	private Pizzeriaservice pizzeriaService;
+	
+	@Autowired
+	private OffertaSpecialeService offertaSpecialeService;
 	
 	@GetMapping("/")
 	public String getPizze(Model model,@RequestParam(required = false) String search) {
@@ -85,7 +91,11 @@ public class MainController {
 	public String deletePizza(@PathVariable int id) {
 		
 		Pizza pizza = pizzeriaService.findById(id);
-		pizzeriaService.delete(pizza);
+        List<OffertaSpeciale> offertePizza = offertaSpecialeService.findByPizza(pizza);
+        offertaSpecialeService.deleteAll(offertePizza);
+
+ 
+        pizzeriaService.delete(pizza);
 			
 		return "redirect:/";
 	}

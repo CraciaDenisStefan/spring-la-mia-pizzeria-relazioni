@@ -3,6 +3,7 @@ package org.java.spring.db.serve;
 import java.util.List;
 
 import org.java.spring.db.pojo.OffertaSpeciale;
+import org.java.spring.db.pojo.Pizza;
 import org.java.spring.db.repo.OffertaSpecialeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,19 @@ public class OffertaSpecialeService {
 		
 		return offertaSpecialeRepo.findById(id).get();
 	}
-	public void save(OffertaSpeciale offertaspeciale) {
+	public void save(OffertaSpeciale offertaSpeciale) {
 		
-		offertaSpecialeRepo.save(offertaspeciale);
+		offertaSpecialeRepo.save(offertaSpeciale);
 	}
-	public void delete(OffertaSpeciale offertaspeciale) {
+	public void deleteOfferta(OffertaSpeciale offertaSpeciale) {
 		
-		offertaSpecialeRepo.delete(offertaspeciale);
+		offertaSpecialeRepo.delete(offertaSpeciale);
 	}
+	
+    public List<OffertaSpeciale> findByPizza(Pizza pizza) {
+        return offertaSpecialeRepo.findByPizza(pizza);
+    }
+    public void deleteAll(List<OffertaSpeciale> offerte) {
+        offertaSpecialeRepo.deleteAll(offerte);
+    }
 }

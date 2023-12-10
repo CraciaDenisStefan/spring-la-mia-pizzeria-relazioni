@@ -45,16 +45,7 @@
                 </tr>
             </tbody>
         </table>
-   <h2>Offerte Speciali:</h2>
-<ul th:each="pizza : ${pizze}">
-    <li th:each="offerta : ${pizza.offerte}">
-        <span th:text="${offerta.titolo}"></span>
-        <span th:text="${offerta.dataInizio}"></span>
-    </li>
-</ul>
-	</div>
-
-	
+	</div>	
 	<footer th:insert="fragments :: footer"></footer>
 	<script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
 </body>
