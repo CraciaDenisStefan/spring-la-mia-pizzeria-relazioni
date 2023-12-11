@@ -110,6 +110,10 @@ public class Pizza {
 		setIngrediente(Arrays.asList(ingrediente));
 	}
 	
+	public void clearIngrediente() {
+		getIngrediente().clear();
+	}
+	
 	@Override
 	public String toString() {
 		

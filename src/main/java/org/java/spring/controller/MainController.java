@@ -104,7 +104,7 @@ public class MainController {
         List<OffertaSpeciale> offertePizza = offertaSpecialeService.findByPizza(pizza);
         offertaSpecialeService.deleteAll(offertePizza);
 
- 
+        pizza.clearIngrediente();
         pizzeriaService.delete(pizza);
 			
 		return "redirect:/";
