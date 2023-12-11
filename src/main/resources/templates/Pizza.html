@@ -15,6 +15,18 @@
 			            Nome: <span th:text="${pizza.nome}"></span><br>
 			            Descrizione: <span th:text="${pizza.descrizione}"></span><br>
 			            <img th:src="${pizza.fotoUrl}" alt="Pizza Image" style="max-width: 300px; max-height: 300px;" class="my-4"><br>
+			            <div
+							>
+							<h4>Ingredienti</h4>
+							<ul>
+								<li
+									th:each="ingrediente : *{ingredienti}"
+									th:object="${ingrediente}"
+								>
+									[[*{nome}]] 
+								</li>
+							</ul>
+						</div>
 			            Prezzo: <span th:text="'€ ' + ${pizza.prezzo}"></span>
 			        </p>
 			        <div th:if="${not #lists.isEmpty(pizza.offerte)}">

@@ -2,8 +2,10 @@ package org.java.spring.controller;
 
 import java.util.List;
 
+import org.java.spring.db.pojo.Ingrediente;
 import org.java.spring.db.pojo.OffertaSpeciale;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.serve.IngredienteService;
 import org.java.spring.db.serve.OffertaSpecialeService;
 import org.java.spring.db.serve.Pizzeriaservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class MainController {
 	@Autowired
 	private OffertaSpecialeService offertaSpecialeService;
 	
+	@Autowired
+	private IngredienteService ingredienteService;
+	
 	@GetMapping("/")
 	public String getPizze(Model model,@RequestParam(required = false) String search) {
 		
@@ -45,7 +50,10 @@ public class MainController {
 			@PathVariable int id) {
 		
 		Pizza pizza = pizzeriaService.findById(id);
+		List<Ingrediente> ingredienti = pizza.getIngrediente();
+		
 		model.addAttribute("pizza", pizza);
+		model.addAttribute("ingredienti", ingredienti);
 		
 		return "pizza";
 	}
@@ -53,10 +61,11 @@ public class MainController {
 	@GetMapping("/pizza/create")
 	public String createPizza(Model model) {
 		
+		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		Pizza pizza = new Pizza();	
 				
 		model.addAttribute("pizza", pizza);
-		
+		model.addAttribute("ingredienti", ingredienti);
 		return "pizza-form";
 	}
 	
@@ -75,12 +84,13 @@ public class MainController {
 			@PathVariable int id) {
 		
 		Pizza pizza = pizzeriaService.findById(id);
+		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		model.addAttribute("pizza", pizza);
-		
+		 model.addAttribute("ingredienti", ingredienti);
 		return "pizza-form";
 	}
 	@PostMapping("/pizza/edit/{id}")
-	public String updateBook(Model model,
+	public String updatePizza(Model model,
 			@Valid @ModelAttribute Pizza pizza, 
 			BindingResult bindingResult) {
 		

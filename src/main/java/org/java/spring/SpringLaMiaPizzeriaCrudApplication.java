@@ -32,8 +32,19 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		Ingrediente ing1 = new  Ingrediente("Pomodoro");
+		Ingrediente ing2 = new  Ingrediente("Olio");
+		Ingrediente ing3 = new  Ingrediente("Mozzarella");
+		Ingrediente ing4 = new  Ingrediente("Funghi");
+		Ingrediente ing5 = new  Ingrediente("Salame");
 		
-		pizzeriaService.save(new Pizza("Margherita", "Mozzarella, pomodoro, basilico", "https://zenideen.com/wp-content/uploads/2020/06/pizza-mozzarella-tomaten-scaled.jpeg", 5.50));
+		ingredienteService.save(ing1);
+    	ingredienteService.save(ing2);
+    	ingredienteService.save(ing3);
+    	ingredienteService.save(ing4);
+    	ingredienteService.save(ing5);
+		
+		pizzeriaService.save(new Pizza("Margherita", "Mozzarella, pomodoro, basilico", "https://zenideen.com/wp-content/uploads/2020/06/pizza-mozzarella-tomaten-scaled.jpeg", 5.50,ing1));
 		pizzeriaService.save(new Pizza("Pepperoni", "Mozzarella, pepperoni", "https://sifu.unileversolutions.com/image/pl-PL/recipe-topvisual/2/1260-709/pizza-peperoni-50531704.jpg", 8.50));
 		pizzeriaService.save(new Pizza("Funghi", "Mozzarella, funghi", "https://cdn.gutekueche.de/media/recipe/5500/conv/pizza-funghi-default.jpg", 7.00));
 		pizzeriaService.save(new Pizza("Quattro Formaggi", "Mozzarella, gorgonzola, parmigiano, ricotta", "https://www.expresschef.ro/wp-content/uploads/2016/08/Pizza-Quattro-Formaggi.jpg", 9.00));
@@ -50,11 +61,7 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		offertaSpecialeService.save(new OffertaSpeciale(LocalDate.now().minusDays(3),LocalDate.now(),"prova4", pizze.get(3)));
 		offertaSpecialeService.save(new OffertaSpeciale(LocalDate.now().minusDays(5),LocalDate.now(),"prova5", pizze.get(4) ));
 	
-		ingredienteService.save(new Ingrediente("Pomodoro"));
-    	ingredienteService.save(new Ingrediente("Mozzarella"));
-    	ingredienteService.save(new Ingrediente("Olio"));
-    	ingredienteService.save(new Ingrediente("Funghi"));
-    	ingredienteService.save(new Ingrediente("Salame"));
+		
 	}
 
 };
