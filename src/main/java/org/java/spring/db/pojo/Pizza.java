@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.validator.constraints.Length; 
 import org.springframework.format.annotation.NumberFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,7 +46,7 @@ public class Pizza {
     @OneToMany(mappedBy = "pizza")
 	private List<OffertaSpeciale> offerte;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Ingrediente> ingrediente;
     
     public Pizza() { }
@@ -113,6 +114,8 @@ public class Pizza {
 	public void clearIngrediente() {
 		getIngrediente().clear();
 	}
+	
+	
 	
 	@Override
 	public String toString() {

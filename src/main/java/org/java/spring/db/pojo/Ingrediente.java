@@ -2,6 +2,7 @@ package org.java.spring.db.pojo;
 
 import java.util.List;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -45,5 +46,6 @@ public class Ingrediente {
 	public void setPizza(List<Pizza> pizza) {
 		this.pizza = pizza;
 	}
+
 	
 }

@@ -1,6 +1,6 @@
 package org.java.spring.db.serve;
 
-import java.util.List;
+import java.util.List; 
 
 import org.java.spring.db.pojo.Pizza;
 import org.java.spring.db.repo.PizzeriaRepository;
@@ -27,6 +27,7 @@ public class Pizzeriaservice {
 		
 		return pizzeriaRepository.findByNomeContainingIgnoreCase(query);
 	}
+
 	public void save(Pizza pizza) {
 		
 		pizzeriaRepository.save(pizza);
